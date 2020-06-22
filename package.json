@@ -1,12 +1,9 @@
 {
-  "name": "gulp3",
+  "name": "stopwatch",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
+  "author": "Pawel Staszczuk",
   "license": "ISC",
   "devDependencies": {
     "browser-sync": "^2.26.7",
