@@ -1,10 +1,12 @@
 var gulp = require("gulp");
-var uglify = require("gulp-uglify");
-var sass = require("gulp-sass");
 var browserSync = require("browser-sync");
-var cssnano = require('gulp-cssnano');
-var htmlmin = require('gulp-htmlmin');
-var ts = require('gulp-typescript');
+var htmlmin = require("gulp-htmlmin");
+var sass = require("gulp-sass");
+var postcss = require("gulp-postcss");
+var autoprefixer = require("gulp-autoprefixer");
+var uglify = require("gulp-uglify");
+var cssnano = require("gulp-cssnano");
+var ts = require("gulp-typescript");
 
 gulp.task("reload", function(done) {
     browserSync.reload();
@@ -19,9 +21,13 @@ gulp.task("html", function(done) {
 });
 
 gulp.task("css", function(done) {
+    var plugins = [
+        autoprefixer,
+        cssnano
+    ];
     gulp.src("src/sass/**/*.scss")
     .pipe(sass().on("error", sass.logError))
-    .pipe(cssnano())
+    .pipe(postcss(plugins))
     .pipe(gulp.dest("dist/css"));
     done();
 });
@@ -40,6 +46,6 @@ gulp.task("server", function() {
         server: "dist"
     });
     gulp.watch("src/*.html", gulp.series("html", "reload"));
-    gulp.watch("src/**/*.scss", gulp.series("css", "reload"));
-    gulp.watch("src/**/*.js", gulp.series("js", "reload"));
+    gulp.watch("src/sass/**/*.scss", gulp.series("css", "reload"));
+    gulp.watch("src/js/**/*.js", gulp.series("js", "reload"));
 });
