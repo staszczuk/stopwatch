@@ -17,6 +17,8 @@
     "gulp-uglify": "^3.0.2"
   },
   "dependencies": {
-    "gulp-htmlmin": "^5.0.1"
+    "gulp-htmlmin": "^5.0.1",
+    "gulp-typescript": "^6.0.0-alpha.1",
+    "typescript": "^3.9.5"
   }
 }
